@@ -17,7 +17,7 @@ index = 0
 masse_balle = 0.058  # 58 grammes
 
 ecran = turtle.Screen()
-ecran.setup(width=800, height=600) # Taille de fenêtre classique et harmonieuse
+ecran.setup(width=800, height=900) # Taille de fenêtre classique et harmonieuse
 ecran.title("Forces de gravité (Appuyez sur ESPACE)")
 
 t = turtle.Turtle()
@@ -71,29 +71,25 @@ def dessiner():
         t.goto(i - 15, -120)
     
     # 2. La Balle
-    rayon_balle = 40
     t.penup()
     t.goto(0, -100)
     t.pendown()
     t.color("#a3e635")
     t.begin_fill()
-    t.circle(rayon_balle)
+    t.circle(40)
     t.end_fill()
-    
+
     t.penup()
     t.goto(0, -60)
     t.color("black")
-    t.dot(6) 
+    t.dot(6)
 
-    longueur = max(p["g"] * 8, 20)
+    # Longueur des flèches ajustée pour ne pas se chevaucher
+    longueur = p["g"] * 12 + 40
 
-    # 3. Poids (P)
     dessiner_fleche(0, -60, 270, longueur, "#ef4444", f"P = {poids:.2f} N")
-
-    # 4. Réaction (R)
     dessiner_fleche(0, -100, 90, longueur, "#3b82f6", f"R = {poids:.2f} N")
 
-    # 5. Affichage du texte seul (Sans le rectangle moche)
     texte = (
         f"PLANÈTE : {p['nom']}\n"
         f"Masse   : {p['masse']} kg\n"
@@ -104,20 +100,19 @@ def dessiner():
         f"Poids : {poids:.2f} N\n\n"
         f"[Appuyez sur ESPACE]"
     )
-    
     t.penup()
-    t.goto(-350, 120)
+    t.goto(-350, 300) # Remonté pour utiliser l'espace supplémentaire de 900px
     t.color("white")
     t.write(texte, font=("Courier", 14, "bold"))
     
     ecran.update()
 
-def suivant():
+def changer_planete():
     global index
     index = (index + 1) % len(planetes)
     dessiner()
 
 dessiner()
-ecran.onkey(suivant, "space")
+ecran.onkey(changer_planete, "space")
 ecran.listen()
 turtle.done()
