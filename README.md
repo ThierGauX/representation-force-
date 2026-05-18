@@ -2,6 +2,10 @@
 
 Un petit programme interactif en Python (utilisant la bibliothèque `turtle`) qui permet de visualiser simplement les forces exercées sur une balle de tennis posée sur le sol de différentes planètes de notre système solaire.
 
+## Aperçu
+
+![Aperçu de la planète Mars](mars.png)
+
 ## Fonctionnalités
 
 - **Calcul physique en temps réel** : Affiche le Poids (`P`) et la Réaction du support (`R`) en fonction de la gravité de chaque planète.
